@@ -23,10 +23,8 @@ export function Home() {
 			<form
 				onSubmit={evento => {
 					evento.preventDefault();
-					if (evento.target.value !== "") {
-						setTodos([...todos, task]);
-						setTask("");
-					}
+					if (task.length > 0) setTodos([...todos, task]);
+					setTask("");
 				}}>
 				<div className="input-group mb-3">
 					<input

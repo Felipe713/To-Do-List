@@ -23,15 +23,27 @@ export function Home() {
 			<form
 				onSubmit={evento => {
 					evento.preventDefault();
-					setTodos([...todos, task]);
-					setTask("");
+					if (evento.target.value !== "") {
+						setTodos([...todos, task]);
+						setTask("");
+					}
 				}}>
-				<input
-					className="container"
-					placeholder="Ingrese su tarea"
-					onChange={evento => setTask(evento.target.value)}
-					value={task}></input>
-				<button>Agregar</button>
+				<div className="input-group mb-3">
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Ingrese una tarea"
+						onChange={evento => setTask(evento.target.value)}
+						value={task}
+					/>
+					<button>Agregar</button>
+				</div>
+				{/* <input
+className="container"
+placeholder="Ingrese su tarea"
+onChange={evento => setTask(evento.target.value)}
+value={task}></input>
+<button>Agregar</button> */}
 			</form>
 			{/* 04 mostrar el contenido del arreglo */}
 			<ul className="list-group">
@@ -39,14 +51,18 @@ export function Home() {
 					return (
 						<li className="list-group-item" key={index}>
 							<span>{item}</span>
-							<button onClick={() => todosEliminar(index)}>
-								<i class="fa fa-trash" aria-hidden="true"></i>
+							<button
+								className="positionIcons"
+								onClick={() => todosEliminar(index)}>
+								<i
+									className="fa fa-trash"
+									aria-hidden="true"></i>
 							</button>
 						</li>
 					);
 				})}
 			</ul>
-			<div>
+			<div className="text-muted">
 				<p>{todos.length} Items left</p>
 			</div>
 		</div>
